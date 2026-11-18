@@ -1,0 +1,13 @@
+Product Catalog:
+Category: Black Friday Deals
+Category: Electronics
+Product: Laptop, Price: $799.99
+Product: Smartphone, Price: $499.99
+Product: Headphones, Price: $99.99
+Category: Clothing
+Product: Jacket, Price: $59.99
+
+Notifying customers about a deal:
+Dear V, New deal available! Huge discounts on Electronics!
+Dear JK, New deal available! Huge discounts on Electronics!
+Customer Jimin is not subscribed to deal notifications.

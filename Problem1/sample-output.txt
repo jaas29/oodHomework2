@@ -1,0 +1,16 @@
+=== Statistical Prediction ===
+Fetching historical weather data for statistical analysis.
+Cleaning and structuring data for statistical model.
+Applying statistical model for hurricane prediction.
+Interpreting and formatting statistical model results.
+
+=== Machine Learning Prediction ===
+Fetching historical and real-time satellite data for ML model.
+Normalizing data and extracting features for ML model.
+Running trained machine learning model for hurricane prediction.
+Evaluating ML confidence scores and storing predictions.
+
+=== Task Manager (Command Pattern) ===
+Fetching weather data...
+Executing prediction model...
+Saving prediction results...

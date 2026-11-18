@@ -1,0 +1,26 @@
+--- Test 1 ---
+Username validated.
+Password validated.
+Email validated.
+Phone number validated.
+Registration passed all validations.
+--- Test 2 ---
+Username validated.
+Password validated.
+Email validated.
+Phone number skipped (optional).
+Registration passed all validations.
+--- Test 3 ---
+Validation failed [username]: Username must be at least 5 characters.
+--- Test 4 ---
+Username validated.
+Validation failed [password]: Password needs an uppercase letter.
+--- Test 5 ---
+Username validated.
+Password validated.
+Validation failed [email]: Invalid email (e.g. username@domain.com).
+--- Test 6 ---
+Username validated.
+Password validated.
+Email validated.
+Validation failed [phone]: Phone must be exactly 10 digits, numbers only.

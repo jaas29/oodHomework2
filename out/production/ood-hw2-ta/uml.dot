@@ -1,0 +1,17 @@
+digraph G { rankdir=BT; node [shape=record, fontname="Helvetica", fontsize=10]; edge [fontname="Helvetica", fontsize=9];
+V [label="{«interface»\nValidator|+ setNextValidator(next : Validator)\l+ validate(r : UserRegistration) throws ValidationException\l}"];
+U [label="{UsernameValidator|- nextValidator : Validator\l|+ setNextValidator()\l+ validate()\l}"];
+P [label="{PasswordValidator|- nextValidator : Validator\l|+ setNextValidator()\l+ validate()\l}"];
+E [label="{EmailValidator|- nextValidator : Validator\l|+ setNextValidator()\l+ validate()\l}"];
+Ph [label="{PhoneNumberValidator|- nextValidator : Validator\l|+ setNextValidator()\l+ validate()\l}"];
+U -> V [arrowhead=empty, style=dashed]; P -> V [arrowhead=empty, style=dashed]; E -> V [arrowhead=empty, style=dashed]; Ph -> V [arrowhead=empty, style=dashed];
+V -> V [arrowhead=vee, label=" next 0..1"];
+UR [label="{UserRegistration|- username : String\l- password : String\l- email : String\l- phoneNumber : String\l|+ getUsername()\l+ getPassword()\l+ getEmail()\l+ getPhoneNumber()\l}"];
+VE [label="{ValidationException|- field : String\l|+ getField() : String\l}"];
+EX [label="{Exception}"]; VE -> EX [arrowhead=empty];
+V -> UR [arrowhead=vee, style=dashed, label="validates"]; V -> VE [arrowhead=vee, style=dashed, label="throws"];
+RF [label="{RegistrationForm\n«JFrame»|- usernameField, passwordField,\l  emailField, phoneField\l- errorLabels : Map\<String, JLabel\>\l- chain : Validator\l|- onRegister()\l}"];
+RF -> V [arrowhead=vee, label="  chain (head)"]; RF -> UR [arrowhead=vee, style=dashed, label="creates"];
+Main [label="{Main\n«client»||+ buildChain() : Validator\l+ main(args : String[])\l}"];
+Main -> RF [arrowhead=vee, style=dashed, label="opens"]; Main -> U [arrowhead=vee, style=dashed, label="links U→P→E→Ph"];
+}

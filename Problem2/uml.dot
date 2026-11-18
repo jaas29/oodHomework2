@@ -1,0 +1,14 @@
+digraph G { rankdir=BT; node [shape=record, fontname="Helvetica", fontsize=10]; edge [fontname="Helvetica", fontsize=9];
+PC [label="{«abstract»\nProductComponent||+ getName() : String\l+ getPrice() : double\l+ display() : void\l+ add(c : ProductComponent) : void\l}"];
+Pr [label="{Product\n«leaf»|- name : String\l- price : double\l|+ getName()\l+ getPrice()\l+ display()\l}"];
+Ca [label="{Category\n«composite»|- name : String\l- children : List\<ProductComponent\>\l|+ add(c : ProductComponent)\l+ getName()\l+ getPrice()  (sum of children)\l+ display()\l}"];
+Pr -> PC [arrowhead=empty]; Ca -> PC [arrowhead=empty];
+Ca -> PC [arrowhead=vee, arrowtail=diamond, dir=both, label="  children 0..*"];
+O [label="{«interface»\nDealObserver|+ receiveNotification(deal : String)\l}"];
+Cu [label="{Customer|- name : String\l|+ getName() : String\l+ receiveNotification(deal : String)\l}"];
+Cu -> O [arrowhead=empty, style=dashed];
+B [label="{BlackFridayDeals\n«subject»|- subscribers : List\<DealObserver\>\l|+ subscribe(o : DealObserver)\l+ unsubscribe(o : DealObserver)\l+ isSubscribed(o) : boolean\l+ notifyCustomers(deal : String)\l+ checkSubscription(c : Customer)\l}"];
+B -> O [arrowhead=vee, arrowtail=odiamond, dir=both, label="  0..*"];
+Main [label="{Main\n«client»||+ main(args : String[])\l}"];
+Main -> Ca [arrowhead=vee, style=dashed, label="builds"]; Main -> B [arrowhead=vee, style=dashed, label="uses"]; Main -> Cu [arrowhead=vee, style=dashed, label="creates"];
+}

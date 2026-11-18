@@ -1,0 +1,19 @@
+digraph G { rankdir=BT; node [shape=record, fontname="Helvetica", fontsize=10]; edge [fontname="Helvetica", fontsize=9];
+T [label="{«abstract»\nHurricanePredictionTemplate|+ predictHurricane() : void  «final»\l# fetchData() : void  «abstract»\l# preprocessData() : void  «abstract»\l# applyPredictionModel() : void  «abstract»\l# postprocessResults() : void  «abstract»\l}"];
+S [label="{StatisticalPrediction||# fetchData()\l# preprocessData()\l# applyPredictionModel()\l# postprocessResults()\l}"];
+M [label="{MachineLearningPrediction||# fetchData()\l# preprocessData()\l# applyPredictionModel()\l# postprocessResults()\l}"];
+S -> T [arrowhead=empty]; M -> T [arrowhead=empty];
+C [label="{«interface»\nCommand|+ execute() : void\l}"];
+F [label="{FetchDataCommand|- fetcher : WeatherDataFetcher\l|+ execute()\l}"];
+P [label="{PredictionCommand|- model : PredictionModel\l|+ execute()\l}"];
+R [label="{SaveResultsCommand|- saver : ResultSaver\l|+ execute()\l}"];
+F -> C [arrowhead=empty, style=dashed]; P -> C [arrowhead=empty, style=dashed]; R -> C [arrowhead=empty, style=dashed];
+W [label="{WeatherDataFetcher\n«receiver»||+ fetchData()\l}"];
+PM [label="{PredictionModel\n«receiver»||+ applyPredictionModel()\l}"];
+RS [label="{ResultSaver\n«receiver»||+ saveResults()\l}"];
+W -> F [arrowhead=none, arrowtail=vee, dir=back]; PM -> P [arrowhead=none, arrowtail=vee, dir=back]; RS -> R [arrowhead=none, arrowtail=vee, dir=back];
+I [label="{PredictionInvoker|- commands : List\<Command\>\l|+ addCommand(c : Command)\l+ removeCommand(c : Command)\l+ executeCommands()\l}"];
+I -> C [arrowhead=vee, arrowtail=odiamond, dir=both, label="  0..*"];
+Main [label="{Main\n«client»||+ main(args : String[])\l}"];
+Main -> T [arrowhead=vee, style=dashed, label="uses"]; Main -> I [arrowhead=vee, style=dashed, label="uses"];
+}
